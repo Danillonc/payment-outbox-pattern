@@ -1,0 +1,21 @@
+package com.example.payment.config;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    @Primary
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        // Register the JavaTimeModule to handle Java 8 date/time types correctly.
+        // This is a best practice for any modern Java application.
+        objectMapper.registerModule(new JavaTimeModule());
+        return objectMapper;
+    }
+}
